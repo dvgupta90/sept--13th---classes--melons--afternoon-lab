@@ -6,7 +6,7 @@ class AbstractMelonOrder:
         self.species = species
         self.qty = qty
         self.shipped= False
-        
+       
 
         if country_code:
             self.country_code = country_code
@@ -50,3 +50,14 @@ class InternationalMelonOrder(AbstractMelonOrder):
         """Return the country code."""
 
         return self.country_code
+
+class GovernmentMelonOrder(AbstractMelonOrder):
+    
+    tax = 0.00
+    passed_inspection = False
+    order_type = "Government"
+
+    def mark_inspection(self, passed):
+        """Returned whether or not melon passed inspection"""
+
+        self.passed_inspection = passed
