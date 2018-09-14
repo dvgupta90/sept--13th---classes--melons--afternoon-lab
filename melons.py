@@ -1,7 +1,7 @@
 """Classes for melon orders."""
 
 
-class AbstractMelonOrder():
+class AbstractMelonOrder:
     def __init__(self, species, qty, country_code =  None):
         self.species = species
         self.qty = qty
@@ -22,9 +22,16 @@ class AbstractMelonOrder():
         base_price = 5
         total = (1 + self.tax) * self.qty * base_price
 
+
+        if self.species == "christmas melon":
+            base_price = 5*1.5
+            
+        if self.order_type == "international" and self.qty < 10:
+            total += 3
+
         return total    
 
-class DomesticMelonOrder():
+class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
 
    
@@ -32,7 +39,7 @@ class DomesticMelonOrder():
     tax = 0.08
 
 
-class InternationalMelonOrder():
+class InternationalMelonOrder(AbstractMelonOrder):
     
 
         
